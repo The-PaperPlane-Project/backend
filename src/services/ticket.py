@@ -81,7 +81,6 @@ class TicketService:
             is_used=data.is_used,
         )
         created_ticket = self.ticket_repo.create(ticket)
-        self.email_service.send_booking_confirmation(created_ticket)
         return TicketResponse.model_validate(created_ticket)
 
     def cancel_ticket(self, ticket_id: str) -> dict[str, str]:
