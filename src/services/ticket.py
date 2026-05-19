@@ -6,14 +6,22 @@ from src.models.user import User
 from src.repositories.flight import FlightRepository
 from src.repositories.seat import SeatRepository
 from src.repositories.ticket import TicketRepository
+from src.services.email import BookingEmailService
 from src.schemas.ticket import TicketCreate, TicketResponse
 
 
 class TicketService:
-    def __init__(self, ticket_repo: TicketRepository, seat_repo: SeatRepository, flight_repo: FlightRepository):
+    def __init__(
+        self,
+        ticket_repo: TicketRepository,
+        seat_repo: SeatRepository,
+        flight_repo: FlightRepository,
+        email_service: BookingEmailService | None = None,
+    ):
         self.ticket_repo = ticket_repo
         self.seat_repo = seat_repo
         self.flight_repo = flight_repo
+        self.email_service = email_service or BookingEmailService()
 
     def book_ticket(self, data: TicketCreate) -> TicketResponse:
         flight = self.flight_repo.get(data.flight_id)
@@ -72,7 +80,9 @@ class TicketService:
             created_at=data.created_at or datetime.utcnow().isoformat(),
             is_used=data.is_used,
         )
-        return TicketResponse.model_validate(self.ticket_repo.create(ticket))
+        created_ticket = self.ticket_repo.create(ticket)
+        self.email_service.send_booking_confirmation(created_ticket)
+        return TicketResponse.model_validate(created_ticket)
 
     def cancel_ticket(self, ticket_id: str) -> dict[str, str]:
         ticket = self.ticket_repo.get(ticket_id)

@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import inspect, text
 from src.database import Base, SessionLocal, engine
-from src.models import *  # noqa: F401,F403 - registers SQLAlchemy models
+from src.models import *
 from src.routes import airplane, auth, city, flight, passenger, seat, ticket, user, user_details
 from src.routes import data_file
 from src.routes.admin import airplane as admin_airplane

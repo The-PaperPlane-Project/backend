@@ -818,8 +818,13 @@
     },
     {
       "id": 2,
-      "email": "itakashh11@gmail.com",
-      "role": "admin"
+      "email": "user1@paperplane.ru",
+      "role": "user"
+    },
+    {
+      "id": 3,
+      "email": "user2@paperplane.ru",
+      "role": "user"
     }
   ]
 }

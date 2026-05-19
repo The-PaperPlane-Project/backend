@@ -39,7 +39,6 @@ class AuthService:
         return {"access_token": access_token, "token_type": "bearer"}
 
     def _hash_password(self, password: str) -> str:
-        # По ТЗ нужен md5. Если в БД есть bcrypt-хеши, verify ниже тоже их понимает.
         return hashlib.md5(password.encode()).hexdigest()
 
     def _verify_password(self, password: str, password_hash: str) -> bool:

@@ -12,6 +12,7 @@ from src.models.passenger import Passenger
 from src.models.seat import Seat
 from src.models.ticket import Ticket
 from src.models.user import User, UserRole
+from src.models.user_details import UserDetails
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = PROJECT_ROOT / "data"
@@ -19,6 +20,18 @@ DATA_FILE = Path(__file__).resolve().parents[2] / "data" / "airport_data.json"
 BACKUP_DIR = DATA_DIR / "backups"
 
 REQUIRED_KEYS = {"planes", "cities", "flights", "passengers", "tickets"}
+DEFAULT_ACCOUNTS = (
+    ("admin@paperplane.ru", "admin", UserRole.ADMIN.value),
+    ("user1@paperplane.ru", "qwerty112", UserRole.USER.value),
+    ("user2@paperplane.ru", "qwerty112", UserRole.USER.value),
+)
+LEGACY_DEFAULT_EMAIL_TARGETS = (
+    ("admin@paperplane.local", "admin@paperplane.ru"),
+    ("itakashh11@gmail.com", "user1@paperplane.ru"),
+    ("coperman2006@gmail.com", "user2@paperplane.ru"),
+    ("user1@mail.ru", "user1@paperplane.ru"),
+    ("user2@mail.ru", "user2@paperplane.ru"),
+)
 
 
 def load_airport_data() -> dict[str, Any]:
@@ -51,26 +64,61 @@ def _seat_number(row_index: int, col_index: int) -> str:
     return f"{row_index + 1}{chr(65 + col_index)}"
 
 
-def _upsert_default_admin(db: Session, email: str, password: str) -> None:
+def _upsert_default_account(db: Session, email: str, password: str, role: str) -> None:
     import hashlib
 
     normalized_email = email.lower()
     password_hash = hashlib.md5(password.encode()).hexdigest()
-    admin = db.query(User).filter(User.email == normalized_email).first()
+    user = db.query(User).filter(User.email == normalized_email).first()
 
-    if admin:
-        admin.password_hash = password_hash
-        admin.role = UserRole.ADMIN.value
+    if user:
+        user.password_hash = password_hash
+        user.role = role
     else:
         db.add(User(
             email=normalized_email,
             password_hash=password_hash,
-            role=UserRole.ADMIN.value,
+            role=role,
         ))
+    db.flush()
+
+
+def _move_legacy_default_account(db: Session, legacy_email: str, target_email: str) -> None:
+    legacy_email = legacy_email.lower()
+    target_email = target_email.lower()
+    if legacy_email == target_email:
+        return
+
+    legacy = db.query(User).filter(User.email == legacy_email).first()
+    if not legacy:
+        return
+
+    target = db.query(User).filter(User.email == target_email).first()
+    if target and target.id != legacy.id:
+        db.query(Passenger).filter(Passenger.user_id == legacy.id).update(
+            {"user_id": target.id},
+            synchronize_session=False,
+        )
+        db.query(Ticket).filter(Ticket.user_id == legacy.id).update(
+            {"user_id": target.id},
+            synchronize_session=False,
+        )
+
+        legacy_details = db.query(UserDetails).filter(UserDetails.user_id == legacy.id).first()
+        target_details = db.query(UserDetails).filter(UserDetails.user_id == target.id).first()
+        if legacy_details:
+            if target_details:
+                db.delete(legacy_details)
+            else:
+                legacy_details.user_id = target.id
+
+        db.delete(legacy)
+    else:
+        legacy.email = target_email
+    db.flush()
 
 
 def seed_sql_from_json(db: Session) -> None:
-    """Initializes empty SQLite tables from the JSON file used by the frontend."""
     data = load_airport_data()
 
     if db.query(Airplane).count() == 0:
@@ -142,16 +190,10 @@ def seed_sql_from_json(db: Session) -> None:
             ))
         db.commit()
 
-    # Демо-администраторы для проверки защищенных /admin роутов.
-    # Пароли хранятся md5 согласно ТЗ.
-    legacy_admin = db.query(User).filter(User.email == "admin@paperplane.local").first()
-    if legacy_admin:
-        legacy_admin.email = "admin@paperplane.ru"
-        legacy_admin.role = UserRole.ADMIN.value
-        db.commit()
-
-    _upsert_default_admin(db, "admin@paperplane.ru", "admin")
-    _upsert_default_admin(db, "itakashh11@gmail.com", "admin")
+    for legacy_email, target_email in LEGACY_DEFAULT_EMAIL_TARGETS:
+        _move_legacy_default_account(db, legacy_email, target_email)
+    for email, password, role in DEFAULT_ACCOUNTS:
+        _upsert_default_account(db, email, password, role)
     db.commit()
 
 
@@ -167,14 +209,6 @@ def _normalize_seat_number(row_index: int, col_index: int) -> str:
 
 
 def replace_sql_from_payload(db: Session, payload: dict[str, Any]) -> dict[str, Any]:
-    """Replace SQL airport data from the frontend-compatible JSON payload.
-
-    The SQL database remains the single source of truth. This endpoint is used by
-    the current React admin forms that send the whole database snapshot after
-    local edits. Users/passwords are intentionally preserved because the frontend
-    payload contains only public user fields and must not overwrite password
-    hashes.
-    """
     _validate_payload(payload)
 
     seen_plane_ids: set[int] = set()
@@ -355,12 +389,6 @@ def replace_sql_from_payload(db: Session, payload: dict[str, Any]) -> dict[str, 
 
 
 def build_airport_data_from_sql(db: Session) -> dict[str, Any]:
-    """Build the frontend-compatible database from SQL tables.
-
-    This is now the main source of truth for the frontend, so occupied seats and
-    user-specific passengers/tickets are shared between different browser
-    sessions and accounts.
-    """
     planes = [
         {
             "id": plane.id,
