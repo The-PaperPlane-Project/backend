@@ -1,0 +1,825 @@
+{
+  "storageKeys": {
+    "adminAuth": "paper-plane-admin-auth",
+    "planes": "paper-plane-planes",
+    "cities": "paper-plane-cities",
+    "flights": "paper-plane-flights",
+    "passengers": "paper-plane-passengers",
+    "tickets": "paper-plane-tickets",
+    "userAuthToken": "paper-plane-auth-token",
+    "userEmail": "paper-plane-user-email"
+  },
+  "adminAuth": false,
+  "planes": [
+    {
+      "id": 101,
+      "name": "Airbus A320",
+      "model": "A320-200",
+      "typeLabel": "Пассажирский",
+      "cabinRows": 8,
+      "cabinCols": 4,
+      "cabinMatrix": [
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ]
+      ]
+    },
+    {
+      "id": 102,
+      "name": "Boeing 737",
+      "model": "737-800",
+      "typeLabel": "Пассажирский",
+      "cabinRows": 10,
+      "cabinCols": 4,
+      "cabinMatrix": [
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ],
+        [
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          },
+          {
+            "type": "economy"
+          }
+        ]
+      ]
+    }
+  ],
+  "cities": [
+    {
+      "id": 1,
+      "name": "Самара",
+      "code": "KUF"
+    },
+    {
+      "id": 2,
+      "name": "Москва",
+      "code": "SVO"
+    },
+    {
+      "id": 3,
+      "name": "Санкт-Петербург",
+      "code": "LED"
+    },
+    {
+      "id": 4,
+      "name": "Сочи",
+      "code": "AER"
+    },
+    {
+      "id": 5,
+      "name": "Новосибирск",
+      "code": "OVB"
+    },
+    {
+      "id": 6,
+      "name": "Казань",
+      "code": "KZN"
+    },
+    {
+      "id": 7,
+      "name": "Екатеринбург",
+      "code": "SVX"
+    },
+    {
+      "id": 8,
+      "name": "Уфа",
+      "code": "UFA"
+    },
+    {
+      "id": 9,
+      "name": "Красноярск",
+      "code": "KJA"
+    },
+    {
+      "id": 10,
+      "name": "Тюмень",
+      "code": "TJM"
+    }
+  ],
+  "flights": [
+    {
+      "id": 1,
+      "timeDeparture": "08:10 11.05",
+      "timeArrival": "09:55 11.05",
+      "flightNumber": "PP-101",
+      "airline": "Paper Plane",
+      "direction": "Москва SVO",
+      "route": "Самара - Москва",
+      "originCity": "Самара",
+      "originCode": "KUF",
+      "destinationCity": "Москва",
+      "destinationCode": "SVO",
+      "departureDate": "2026-05-11",
+      "departureTime": "08:10",
+      "arrivalDate": "2026-05-11",
+      "arrivalTime": "09:55",
+      "status": null,
+      "isDeparture": true,
+      "planeId": 101,
+      "basePrice": 6800,
+      "timestamp": 1778487000000,
+      "arrivalTimestamp": 1778493300000
+    },
+    {
+      "id": 2,
+      "timeDeparture": "10:40 11.05",
+      "timeArrival": "12:55 11.05",
+      "flightNumber": "SU-2145",
+      "airline": "Aeroflot",
+      "direction": "Санкт-Петербург LED",
+      "route": "Санкт-Петербург - Самара",
+      "originCity": "Санкт-Петербург",
+      "originCode": "LED",
+      "destinationCity": "Самара",
+      "destinationCode": "KUF",
+      "departureDate": "2026-05-11",
+      "departureTime": "10:40",
+      "arrivalDate": "2026-05-11",
+      "arrivalTime": "12:55",
+      "status": "registration",
+      "isDeparture": false,
+      "planeId": 101,
+      "basePrice": 7400,
+      "timestamp": 1778496000000,
+      "arrivalTimestamp": 1778504100000
+    },
+    {
+      "id": 3,
+      "timeDeparture": "13:20 11.05",
+      "timeArrival": "15:45 11.05",
+      "flightNumber": "S7-6284",
+      "airline": "S7 Airlines",
+      "direction": "Новосибирск OVB",
+      "route": "Самара - Новосибирск",
+      "originCity": "Самара",
+      "originCode": "KUF",
+      "destinationCity": "Новосибирск",
+      "destinationCode": "OVB",
+      "departureDate": "2026-05-11",
+      "departureTime": "13:20",
+      "arrivalDate": "2026-05-11",
+      "arrivalTime": "15:45",
+      "status": "delayed",
+      "isDeparture": true,
+      "planeId": 101,
+      "basePrice": 9200,
+      "timestamp": 1778505600000,
+      "arrivalTimestamp": 1778514300000
+    },
+    {
+      "id": 4,
+      "timeDeparture": "18:05 11.05",
+      "timeArrival": "20:20 11.05",
+      "flightNumber": "DP-436",
+      "airline": "Победа",
+      "direction": "Сочи AER",
+      "route": "Сочи - Самара",
+      "originCity": "Сочи",
+      "originCode": "AER",
+      "destinationCity": "Самара",
+      "destinationCode": "KUF",
+      "departureDate": "2026-05-11",
+      "departureTime": "18:05",
+      "arrivalDate": "2026-05-11",
+      "arrivalTime": "20:20",
+      "status": null,
+      "isDeparture": false,
+      "planeId": 101,
+      "basePrice": 8100,
+      "timestamp": 1778522700000,
+      "arrivalTimestamp": 1778530800000
+    },
+    {
+      "id": 5,
+      "timeDeparture": "07:30 12.05",
+      "timeArrival": "08:55 12.05",
+      "flightNumber": "UT-817",
+      "airline": "Utair",
+      "direction": "Казань KZN",
+      "route": "Самара - Казань",
+      "originCity": "Самара",
+      "originCode": "KUF",
+      "destinationCity": "Казань",
+      "destinationCode": "KZN",
+      "departureDate": "2026-05-12",
+      "departureTime": "07:30",
+      "arrivalDate": "2026-05-12",
+      "arrivalTime": "08:55",
+      "status": null,
+      "isDeparture": true,
+      "planeId": 101,
+      "basePrice": 5200,
+      "timestamp": 1778571000000,
+      "arrivalTimestamp": 1778576100000
+    },
+    {
+      "id": 6,
+      "timeDeparture": "09:10 12.05",
+      "timeArrival": "10:50 12.05",
+      "flightNumber": "U6-324",
+      "airline": "Уральские авиалинии",
+      "direction": "Екатеринбург SVX",
+      "route": "Екатеринбург - Самара",
+      "originCity": "Екатеринбург",
+      "originCode": "SVX",
+      "destinationCity": "Самара",
+      "destinationCode": "KUF",
+      "departureDate": "2026-05-12",
+      "departureTime": "09:10",
+      "arrivalDate": "2026-05-12",
+      "arrivalTime": "10:50",
+      "status": "arrived",
+      "isDeparture": false,
+      "planeId": 101,
+      "basePrice": 5700,
+      "timestamp": 1778577000000,
+      "arrivalTimestamp": 1778583000000
+    },
+    {
+      "id": 7,
+      "timeDeparture": "12:45 12.05",
+      "timeArrival": "14:10 12.05",
+      "flightNumber": "PP-126",
+      "airline": "Paper Plane",
+      "direction": "Уфа UFA",
+      "route": "Самара - Уфа",
+      "originCity": "Самара",
+      "originCode": "KUF",
+      "destinationCity": "Уфа",
+      "destinationCode": "UFA",
+      "departureDate": "2026-05-12",
+      "departureTime": "12:45",
+      "arrivalDate": "2026-05-12",
+      "arrivalTime": "14:10",
+      "status": null,
+      "isDeparture": true,
+      "planeId": 101,
+      "basePrice": 4900,
+      "timestamp": 1778589900000,
+      "arrivalTimestamp": 1778595000000
+    },
+    {
+      "id": 8,
+      "timeDeparture": "21:35 12.05",
+      "timeArrival": "00:25 13.05",
+      "flightNumber": "SU-1842",
+      "airline": "Aeroflot",
+      "direction": "Красноярск KJA",
+      "route": "Красноярск - Самара",
+      "originCity": "Красноярск",
+      "originCode": "KJA",
+      "destinationCity": "Самара",
+      "destinationCode": "KUF",
+      "departureDate": "2026-05-12",
+      "departureTime": "21:35",
+      "arrivalDate": "2026-05-13",
+      "arrivalTime": "00:25",
+      "status": "in_flight",
+      "isDeparture": false,
+      "planeId": 101,
+      "basePrice": 9800,
+      "timestamp": 1778621700000,
+      "arrivalTimestamp": 1778631900000
+    },
+    {
+      "id": 9,
+      "timeDeparture": "06:50 13.05",
+      "timeArrival": "09:20 13.05",
+      "flightNumber": "S7-741",
+      "airline": "S7 Airlines",
+      "direction": "Сочи AER",
+      "route": "Самара - Сочи",
+      "originCity": "Самара",
+      "originCode": "KUF",
+      "destinationCity": "Сочи",
+      "destinationCode": "AER",
+      "departureDate": "2026-05-13",
+      "departureTime": "06:50",
+      "arrivalDate": "2026-05-13",
+      "arrivalTime": "09:20",
+      "status": null,
+      "isDeparture": true,
+      "planeId": 101,
+      "basePrice": 8400,
+      "timestamp": 1778655000000,
+      "arrivalTimestamp": 1778664000000
+    },
+    {
+      "id": 10,
+      "timeDeparture": "11:20 13.05",
+      "timeArrival": "13:05 13.05",
+      "flightNumber": "PP-208",
+      "airline": "Paper Plane",
+      "direction": "Москва SVO",
+      "route": "Москва - Самара",
+      "originCity": "Москва",
+      "originCode": "SVO",
+      "destinationCity": "Самара",
+      "destinationCode": "KUF",
+      "departureDate": "2026-05-13",
+      "departureTime": "11:20",
+      "arrivalDate": "2026-05-13",
+      "arrivalTime": "13:05",
+      "status": null,
+      "isDeparture": false,
+      "planeId": 101,
+      "basePrice": 6900,
+      "timestamp": 1778671200000,
+      "arrivalTimestamp": 1778677500000
+    },
+    {
+      "id": 11,
+      "timeDeparture": "15:00 13.05",
+      "timeArrival": "16:55 13.05",
+      "flightNumber": "DP-918",
+      "airline": "Победа",
+      "direction": "Санкт-Петербург LED",
+      "route": "Самара - Санкт-Петербург",
+      "originCity": "Самара",
+      "originCode": "KUF",
+      "destinationCity": "Санкт-Петербург",
+      "destinationCode": "LED",
+      "departureDate": "2026-05-13",
+      "departureTime": "15:00",
+      "arrivalDate": "2026-05-13",
+      "arrivalTime": "16:55",
+      "status": "registration",
+      "isDeparture": true,
+      "planeId": 101,
+      "basePrice": 7600,
+      "timestamp": 1778684400000,
+      "arrivalTimestamp": 1778691300000
+    },
+    {
+      "id": 12,
+      "timeDeparture": "19:30 13.05",
+      "timeArrival": "20:45 13.05",
+      "flightNumber": "UT-604",
+      "airline": "Utair",
+      "direction": "Тюмень TJM",
+      "route": "Тюмень - Самара",
+      "originCity": "Тюмень",
+      "originCode": "TJM",
+      "destinationCity": "Самара",
+      "destinationCode": "KUF",
+      "departureDate": "2026-05-13",
+      "departureTime": "19:30",
+      "arrivalDate": "2026-05-13",
+      "arrivalTime": "20:45",
+      "status": null,
+      "isDeparture": false,
+      "planeId": 101,
+      "basePrice": 5900,
+      "timestamp": 1778700600000,
+      "arrivalTimestamp": 1778705100000
+    },
+    {
+      "id": 13,
+      "timeDeparture": "08:25 14.05",
+      "timeArrival": "10:05 14.05",
+      "flightNumber": "U6-912",
+      "airline": "Уральские авиалинии",
+      "direction": "Екатеринбург SVX",
+      "route": "Самара - Екатеринбург",
+      "originCity": "Самара",
+      "originCode": "KUF",
+      "destinationCity": "Екатеринбург",
+      "destinationCode": "SVX",
+      "departureDate": "2026-05-14",
+      "departureTime": "08:25",
+      "arrivalDate": "2026-05-14",
+      "arrivalTime": "10:05",
+      "status": null,
+      "isDeparture": true,
+      "planeId": 101,
+      "basePrice": 5600,
+      "timestamp": 1778747100000,
+      "arrivalTimestamp": 1778753100000
+    },
+    {
+      "id": 14,
+      "timeDeparture": "10:55 14.05",
+      "timeArrival": "12:35 14.05",
+      "flightNumber": "PP-305",
+      "airline": "Paper Plane",
+      "direction": "Казань KZN",
+      "route": "Казань - Самара",
+      "originCity": "Казань",
+      "originCode": "KZN",
+      "destinationCity": "Самара",
+      "destinationCode": "KUF",
+      "departureDate": "2026-05-14",
+      "departureTime": "10:55",
+      "arrivalDate": "2026-05-14",
+      "arrivalTime": "12:35",
+      "status": "registration_closed",
+      "isDeparture": false,
+      "planeId": 101,
+      "basePrice": 5100,
+      "timestamp": 1778756100000,
+      "arrivalTimestamp": 1778762100000
+    },
+    {
+      "id": 15,
+      "timeDeparture": "14:15 14.05",
+      "timeArrival": "16:40 14.05",
+      "flightNumber": "SU-540",
+      "airline": "Aeroflot",
+      "direction": "Красноярск KJA",
+      "route": "Самара - Красноярск",
+      "originCity": "Самара",
+      "originCode": "KUF",
+      "destinationCity": "Красноярск",
+      "destinationCode": "KJA",
+      "departureDate": "2026-05-14",
+      "departureTime": "14:15",
+      "arrivalDate": "2026-05-14",
+      "arrivalTime": "16:40",
+      "status": null,
+      "isDeparture": true,
+      "planeId": 101,
+      "basePrice": 9900,
+      "timestamp": 1778768100000,
+      "arrivalTimestamp": 1778776800000
+    },
+    {
+      "id": 16,
+      "timeDeparture": "22:20 14.05",
+      "timeArrival": "23:55 14.05",
+      "flightNumber": "S7-318",
+      "airline": "S7 Airlines",
+      "direction": "Уфа UFA",
+      "route": "Уфа - Самара",
+      "originCity": "Уфа",
+      "originCode": "UFA",
+      "destinationCity": "Самара",
+      "destinationCode": "KUF",
+      "departureDate": "2026-05-14",
+      "departureTime": "22:20",
+      "arrivalDate": "2026-05-14",
+      "arrivalTime": "23:55",
+      "status": null,
+      "isDeparture": false,
+      "planeId": 101,
+      "basePrice": 4800,
+      "timestamp": 1778797200000,
+      "arrivalTimestamp": 1778802900000
+    },
+    {
+      "id": 17,
+      "timeDeparture": "06:40 15.05",
+      "timeArrival": "08:20 15.05",
+      "flightNumber": "PP-412",
+      "airline": "Paper Plane",
+      "direction": "Москва SVO",
+      "route": "Самара - Москва",
+      "originCity": "Самара",
+      "originCode": "KUF",
+      "destinationCity": "Москва",
+      "destinationCode": "SVO",
+      "departureDate": "2026-05-15",
+      "departureTime": "06:40",
+      "arrivalDate": "2026-05-15",
+      "arrivalTime": "08:20",
+      "status": null,
+      "isDeparture": true,
+      "planeId": 101,
+      "basePrice": 6800,
+      "timestamp": 1778827200000,
+      "arrivalTimestamp": 1778833200000
+    },
+    {
+      "id": 18,
+      "timeDeparture": "12:10 15.05",
+      "timeArrival": "14:55 15.05",
+      "flightNumber": "DP-706",
+      "airline": "Победа",
+      "direction": "Новосибирск OVB",
+      "route": "Новосибирск - Самара",
+      "originCity": "Новосибирск",
+      "originCode": "OVB",
+      "destinationCity": "Самара",
+      "destinationCode": "KUF",
+      "departureDate": "2026-05-15",
+      "departureTime": "12:10",
+      "arrivalDate": "2026-05-15",
+      "arrivalTime": "14:55",
+      "status": null,
+      "isDeparture": false,
+      "planeId": 101,
+      "basePrice": 9100,
+      "timestamp": 1778847000000,
+      "arrivalTimestamp": 1778856900000
+    },
+    {
+      "id": 19,
+      "timeDeparture": "17:25 15.05",
+      "timeArrival": "19:15 15.05",
+      "flightNumber": "UT-901",
+      "airline": "Utair",
+      "direction": "Тюмень TJM",
+      "route": "Самара - Тюмень",
+      "originCity": "Самара",
+      "originCode": "KUF",
+      "destinationCity": "Тюмень",
+      "destinationCode": "TJM",
+      "departureDate": "2026-05-15",
+      "departureTime": "17:25",
+      "arrivalDate": "2026-05-15",
+      "arrivalTime": "19:15",
+      "status": "delayed",
+      "isDeparture": true,
+      "planeId": 101,
+      "basePrice": 6000,
+      "timestamp": 1778865900000,
+      "arrivalTimestamp": 1778872500000
+    },
+    {
+      "id": 20,
+      "timeDeparture": "20:35 15.05",
+      "timeArrival": "22:50 15.05",
+      "flightNumber": "SU-2804",
+      "airline": "Aeroflot",
+      "direction": "Сочи AER",
+      "route": "Сочи - Самара",
+      "originCity": "Сочи",
+      "originCode": "AER",
+      "destinationCity": "Самара",
+      "destinationCode": "KUF",
+      "departureDate": "2026-05-15",
+      "departureTime": "20:35",
+      "arrivalDate": "2026-05-15",
+      "arrivalTime": "22:50",
+      "status": "in_flight",
+      "isDeparture": false,
+      "planeId": 101,
+      "basePrice": 8300,
+      "timestamp": 1778877300000,
+      "arrivalTimestamp": 1778885400000
+    }
+  ],
+  "passengers": [
+    {
+      "id": "1",
+      "surname": "Иванов",
+      "name": "Иван",
+      "patronymic": "Иванович",
+      "type": "adult",
+      "docType": "passport",
+      "docNumber": "4510123456"
+    }
+  ],
+  "tickets": [],
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@paperplane.ru",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "email": "itakashh11@gmail.com",
+      "role": "admin"
+    }
+  ]
+}
