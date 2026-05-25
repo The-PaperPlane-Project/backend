@@ -3,6 +3,7 @@ import smtplib
 from email.message import EmailMessage
 from pathlib import Path
 from src.models.ticket import Ticket
+from src.services.ticket_pdf import TicketPdfBuilder
 
 
 class BookingEmailService:
@@ -17,6 +18,7 @@ class BookingEmailService:
         self.use_starttls = os.getenv("MAIL_SMTP_STARTTLS", "true").lower() == "true"
         self.outbox_dir = Path(os.getenv("MAIL_OUTBOX_DIR", "./data/outbox"))
         self.raise_on_error = os.getenv("MAIL_RAISE_ON_ERROR", "false").lower() == "true"
+        self.pdf_builder = TicketPdfBuilder()
 
     def send_booking_confirmation(self, ticket: Ticket) -> None:
         recipient = ticket.user.email if ticket.user else ""
@@ -24,11 +26,22 @@ class BookingEmailService:
             return
 
         message = self._build_message(ticket, recipient)
+        self._deliver(message, f"{ticket.id}-booking")
+
+    def send_ticket_pdf(self, ticket: Ticket, recipient: str | None = None) -> None:
+        recipient = recipient or (ticket.user.email if ticket.user else "")
+        if not recipient:
+            return
+
+        message = self._build_ticket_pdf_message(ticket, recipient)
+        self._deliver(message, f"{ticket.id}-pdf")
+
+    def _deliver(self, message: EmailMessage, message_id: str) -> None:
         try:
             if self.smtp_host and self.from_email:
                 self._send_smtp(message)
             else:
-                self._save_to_outbox(message, ticket.id)
+                self._save_to_outbox(message, message_id)
         except Exception:
             if self.raise_on_error:
                 raise
@@ -64,6 +77,22 @@ class BookingEmailService:
         message["From"] = f"{self.from_name} <{self.from_email}>" if self.from_email else self.from_name
         message["To"] = recipient
         message.set_content("\n".join(lines))
+        return message
+
+    def _build_ticket_pdf_message(self, ticket: Ticket, recipient: str) -> EmailMessage:
+        message = EmailMessage()
+        message["Subject"] = f"Paper Plane: билет {ticket.id}"
+        message["From"] = f"{self.from_name} <{self.from_email}>" if self.from_email else self.from_name
+        message["To"] = recipient
+        message.set_content(
+            "Здравствуйте!\n\nВо вложении находится ваш билет Paper Plane в формате PDF.\n"
+        )
+        message.add_attachment(
+            self.pdf_builder.build(ticket),
+            maintype="application",
+            subtype="pdf",
+            filename=f"ticket-{ticket.id}.pdf",
+        )
         return message
 
     def _send_smtp(self, message: EmailMessage) -> None:

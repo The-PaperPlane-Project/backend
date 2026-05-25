@@ -100,6 +100,18 @@ class TicketService:
         self.ticket_repo.delete(ticket_id)
         return {"status": "ok"}
 
+    def send_ticket_to_email(self, ticket_id: str, current_user: User) -> dict[str, str]:
+        ticket = self.ticket_repo.get(ticket_id)
+        if not ticket:
+            raise HTTPException(status_code=404, detail="Ticket not found")
+        if ticket.user_id != current_user.id:
+            raise HTTPException(status_code=403, detail="Ticket does not belong to current user")
+        if not current_user.email:
+            raise HTTPException(status_code=400, detail="User email is not specified")
+
+        self.email_service.send_ticket_pdf(ticket, current_user.email)
+        return {"status": "ok"}
+
     def get_tickets_for_user(self, user_id: int) -> list[TicketResponse]:
         return [TicketResponse.model_validate(t) for t in self.ticket_repo.get_by_user(user_id)]
 
