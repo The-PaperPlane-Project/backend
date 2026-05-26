@@ -5,6 +5,7 @@ Backend API for the Paper Plane airport application.
 ## Start
 
 ```bash
+$env:Path += ";$env:APPDATA\Python\Scripts"
 poetry install
 poetry run uvicorn src.main:app --reload
 ```
